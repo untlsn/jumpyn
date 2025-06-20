@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/test-utils',
     '@nuxt/scripts',
+    'shadcn-nuxt',
   ],
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
@@ -27,5 +28,9 @@ export default defineNuxtConfig({
         semi: true,
       },
     },
+  },
+  shadcn: {
+    prefix: 'Ui',
+    componentDir: './app/components/ui',
   },
 });
