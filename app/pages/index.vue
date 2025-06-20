@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <div>
+  <div class="min-h-screen grid place-items-center">
     Hello World!
   </div>
 </template>
