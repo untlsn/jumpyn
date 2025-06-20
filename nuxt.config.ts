@@ -9,6 +9,9 @@ export default defineNuxtConfig({
     '@nuxt/scripts',
   ],
   devtools: { enabled: true },
+  future: {
+    compatibilityVersion: 4,
+  },
   compatibilityDate: '2025-05-15',
   eslint: {
     config: {
