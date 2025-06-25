@@ -10,9 +10,14 @@ export default defineNuxtConfig({
     '@nuxt/test-utils',
     '@nuxt/scripts',
     'shadcn-nuxt',
+    '@nuxtjs/color-mode',
   ],
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
+  colorMode: {
+    preference: 'system',
+    classSuffix: '',
+  },
   future: {
     compatibilityVersion: 4,
   },
@@ -28,6 +33,9 @@ export default defineNuxtConfig({
         semi: true,
       },
     },
+  },
+  icon: {
+    componentName: 'NuxtIcon',
   },
   shadcn: {
     prefix: 'Ui',
