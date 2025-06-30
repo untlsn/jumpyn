@@ -17,7 +17,7 @@ const switchPreference = () => {
       />
       Jumpyn
     </p>
-    <div>
+    <div class="flex items-center gap-2">
       <UiButton
         variant="outline"
         size="icon"
@@ -33,6 +33,12 @@ const switchPreference = () => {
           class="go-from-bottom"
           name="lucide:moon"
         />
+      </UiButton>
+      <UiButton variant="outline">
+        Log In
+      </UiButton>
+      <UiButton variant="vibrant">
+        Get started
       </UiButton>
     </div>
   </header>
