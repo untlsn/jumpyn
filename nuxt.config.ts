@@ -12,6 +12,12 @@ export default defineNuxtConfig({
     'shadcn-nuxt',
     '@nuxtjs/color-mode',
   ],
+  imports: {
+    presets: [{
+      from: '@tanstack/vue-form',
+      imports: [{ name: 'useForm', as: 'useTanstackForm' }],
+    }],
+  },
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
   colorMode: {

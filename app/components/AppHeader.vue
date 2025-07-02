@@ -4,6 +4,14 @@ const colorMode = useColorMode();
 const switchPreference = () => {
   colorMode.preference = colorMode.preference === 'dark' ? 'light' : 'dark';
 };
+
+const a = ref(false);
+
+onMounted(() => {
+  setInterval(() => {
+    a.value = !a.value;
+  }, 1000);
+});
 </script>
 
 <template>
@@ -34,12 +42,15 @@ const switchPreference = () => {
           name="lucide:moon"
         />
       </UiButton>
-      <UiButton variant="outline">
+      <AppButtonLink to="/auth/login">
         Log In
-      </UiButton>
-      <UiButton variant="vibrant">
+      </AppButtonLink>
+      <AppButtonLink
+        to="/auth/register"
+        variant="vibrant"
+      >
         Get started
-      </UiButton>
+      </AppButtonLink>
     </div>
   </header>
 </template>
