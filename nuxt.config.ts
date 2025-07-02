@@ -16,6 +16,9 @@ export default defineNuxtConfig({
     presets: [{
       from: '@tanstack/vue-form',
       imports: [{ name: 'useForm', as: 'useTanstackForm' }],
+    }, {
+      from: '@tanstack/vue-query',
+      imports: [{ name: 'useQuery', as: 'useTanstackQuery' }, { name: 'useMutation', as: 'useTanstackMutation' }],
     }],
   },
   devtools: { enabled: true },

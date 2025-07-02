@@ -1,12 +1,38 @@
 <script setup lang="ts">
+import { authClient, BetterAuthAuthError } from '~/lib/auth-client';
+
+type RegisterFormValues = {
+  name: string;
+  email: string;
+  password: string;
+};
+
+const { mutate, status, error } = useTanstackMutation({
+  mutationKey: ['auth', 'register'],
+  async mutationFn(value: RegisterFormValues) {
+    const { data, error } = await authClient.signUp.email({
+      name: value.name,
+      email: value.email,
+      password: value.password,
+    });
+    if (error) throw new BetterAuthAuthError(error);
+    return data;
+  },
+  onSuccess() {
+    navigateTo('/');
+  },
+});
+
+const disabled = computed(() => status.value === 'pending' || status.value == 'success');
+
 const form = useTanstackForm({
   defaultValues: {
     name: '',
     email: '',
     password: '',
-  },
-  onSubmit(values) {
-    console.log(values);
+  } as RegisterFormValues,
+  onSubmit({ value }) {
+    mutate(value);
   },
 });
 </script>
@@ -57,9 +83,16 @@ const form = useTanstackForm({
       <UiButton
         type="submit"
         variant="vibrant"
+        :disabled
       >
         Sign Up
       </UiButton>
+      <p
+        v-if="error"
+        class="text-destructive text-center"
+      >
+        {{ error.message }}
+      </p>
       <p class="text-center text-muted-foreground">
         <span>Already have an account?</span>
         <snap class="hover:underline">
