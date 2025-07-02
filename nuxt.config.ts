@@ -12,6 +12,15 @@ export default defineNuxtConfig({
     'shadcn-nuxt',
     '@nuxtjs/color-mode',
   ],
+  imports: {
+    presets: [{
+      from: '@tanstack/vue-form',
+      imports: [{ name: 'useForm', as: 'useTanstackForm' }],
+    }, {
+      from: '@tanstack/vue-query',
+      imports: [{ name: 'useQuery', as: 'useTanstackQuery' }, { name: 'useMutation', as: 'useTanstackMutation' }],
+    }],
+  },
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
   colorMode: {

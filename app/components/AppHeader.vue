@@ -4,6 +4,16 @@ const colorMode = useColorMode();
 const switchPreference = () => {
   colorMode.preference = colorMode.preference === 'dark' ? 'light' : 'dark';
 };
+
+const a = ref(false);
+
+onMounted(() => {
+  setInterval(() => {
+    a.value = !a.value;
+  }, 1000);
+});
+
+const { data } = await useSession();
 </script>
 
 <template>
@@ -34,12 +44,25 @@ const switchPreference = () => {
           name="lucide:moon"
         />
       </UiButton>
-      <UiButton variant="outline">
-        Log In
-      </UiButton>
-      <UiButton variant="vibrant">
-        Get started
-      </UiButton>
+      <AppButtonLink
+        v-if="data"
+        to="/profile"
+        variant="vibrant"
+      >
+        <NuxtIcon name="lucide:user" />
+        {{ data.user.name }}
+      </AppButtonLink>
+      <template v-else>
+        <AppButtonLink to="/auth/login">
+          Log In
+        </AppButtonLink>
+        <AppButtonLink
+          to="/auth/register"
+          variant="vibrant"
+        >
+          Get started
+        </AppButtonLink>
+      </template>
     </div>
   </header>
 </template>
