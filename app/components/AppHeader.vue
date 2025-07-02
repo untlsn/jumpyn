@@ -12,6 +12,8 @@ onMounted(() => {
     a.value = !a.value;
   }, 1000);
 });
+
+const { data } = await useSession();
 </script>
 
 <template>
@@ -42,15 +44,25 @@ onMounted(() => {
           name="lucide:moon"
         />
       </UiButton>
-      <AppButtonLink to="/auth/login">
-        Log In
-      </AppButtonLink>
       <AppButtonLink
-        to="/auth/register"
+        v-if="data"
+        to="/profile"
         variant="vibrant"
       >
-        Get started
+        <NuxtIcon name="lucide:user" />
+        {{ data.user.name }}
       </AppButtonLink>
+      <template v-else>
+        <AppButtonLink to="/auth/login">
+          Log In
+        </AppButtonLink>
+        <AppButtonLink
+          to="/auth/register"
+          variant="vibrant"
+        >
+          Get started
+        </AppButtonLink>
+      </template>
     </div>
   </header>
 </template>
